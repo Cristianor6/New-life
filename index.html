@@ -1,0 +1,68 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Life - Inicio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+<div class="contenedor-app">
+    <header class="mi-header">
+        <div class="barra-superior">
+            <h1>Separa, recicla y da otra oportunidad</h1>
+            <button id="boton-menu" class="btn-menu">☰</button>    
+        </div>
+        
+        <nav id="navegacion" class="menu-oculto">
+            <a href="index.html">🏠 Inicio</a>
+            <a href="galeria.html">🖼️ Galería</a>
+            <a href="contacto.html">📞 Contacto</a>
+        </nav>  
+    </header>
+
+    <main class="contenido">
+        <h2>Guía Fácil para Separación de Basura</h2>
+        <p>Aprende a clasificar los residuos correctamente con estas simples categorías:</p>
+        
+        <section class="seccion-media">
+            <!-- Galería explicativa de separación -->
+            <div class="galeria-vertical">
+                <div class="tarjeta-guia">
+                    <img src="imagenes/imagen1.jpg" alt="Residuos Aprovechables (Orgánicos)" class="img-proyecto">
+                    <p><strong>Orgánicos:</strong> Restos de comida y desecho vegetal.</p>
+                </div>
+                
+                <div class="tarjeta-guia">
+                    <img src="imagenes/imagen2.jpg" alt="Reciclables (Plástico, Cartón y Vidrio)" class="img-proyecto">
+                    <p><strong>Aprovechables:</strong> Plástico, papel, cartón, vidrio y metal limpios.</p>
+                </div>
+
+                <div class="tarjeta-guia">
+                    <img src="imagenes/imagen3.jpg" alt="No Aprovechables" class="img-proyecto">
+                    <p><strong>No Aprovechables:</strong> Papel higiénico, servilletas usadas y cartón contaminado.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid-servicios">
+            <div class="card" id="btn-reportar">
+                <span class="icon">👓</span>
+                <h3>Más información</h3>
+            </div>
+      
+            <div class="card" id="btn-manual">
+                <span class="icon">🚀</span>
+                <h3>Jugar</h3>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
