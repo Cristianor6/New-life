@@ -25,7 +25,7 @@ body {
   line-height: 1.5;
 }
 
-/* CONTENEDOR PRINCIPAL RESPONSIVO (se expande a cualquier pantalla) */
+/* CONTENEDOR PRINCIPAL - Adaptable a 100% de la pantalla */
 .contenedor-app {
   width: 100%;
   min-height: 100vh;
@@ -60,11 +60,12 @@ body {
   gap: 12px;
 }
 
-/* Imagen de Logo */
+/* Estilo para el logo */
 .icon-app-img {
   width: 36px;
   height: 36px;
   object-fit: contain;
+  border-radius: 6px;
 }
 
 .barra-superior h1 {
@@ -106,10 +107,9 @@ body {
   width: 38px;
   height: 38px;
   cursor: pointer;
-  transition: background 0.2s;
 }
 
-/* MENÚ DESPLEGABLE */
+/* MENÚ */
 #navegacion {
   display: flex;
   flex-direction: column;
@@ -135,19 +135,18 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  transition: background 0.2s;
 }
 
 #navegacion a:hover {
   background-color: var(--primary-light);
 }
 
-/* CONTENIDO PRINCIPAL FLUIDO */
+/* CONTENIDO */
 .contenido {
   padding: 20px;
   flex: 1;
   width: 100%;
-  max-width: 1200px; /* Limite de lectura óptimo en pantallas grandes */
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -165,7 +164,6 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* HERO BANNER */
 .hero-banner {
   background: #e8f5e9;
   border-left: 5px solid var(--primary);
@@ -185,7 +183,7 @@ body {
   color: var(--text-light);
 }
 
-/* GRID DE SERVICIOS ADAPTABLE */
+/* GRIDS AUTO-ADAPTABLES */
 .grid-servicios {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -200,7 +198,6 @@ body {
   box-shadow: var(--shadow);
   cursor: pointer;
   text-align: center;
-  transition: transform 0.2s, box-shadow 0.2s;
   border: 1px solid #e0e0e0;
 }
 
@@ -209,29 +206,12 @@ body {
   border-color: var(--accent);
 }
 
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-}
-
 .card .icon {
   font-size: 36px;
   display: block;
   margin-bottom: 8px;
 }
 
-.card h3 {
-  font-size: 1.05rem;
-  color: var(--primary-dark);
-}
-
-.card-desc {
-  font-size: 0.85rem;
-  color: var(--text-light);
-  margin-top: 4px;
-}
-
-/* GRID DE CANECAS ADAPTABLE */
 .canecas-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -251,12 +231,6 @@ body {
 .caneca-verde { border-left-color: #4caf50; }
 .caneca-negra { border-left-color: #424242; }
 
-.caneca-header {
-  font-weight: bold;
-  font-size: 0.85rem;
-  margin-bottom: 4px;
-}
-
 /* FILTROS Y BUSCADOR */
 .buscador-box {
   margin: 16px 0;
@@ -268,7 +242,6 @@ body {
   border-radius: 10px;
   border: 1px solid #cccccc;
   font-size: 1rem;
-  outline: none;
 }
 
 .filtros-categorias {
@@ -285,7 +258,6 @@ body {
   border-radius: 20px;
   font-size: 0.85rem;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
 }
 
 .btn-filtro.active {
@@ -294,7 +266,6 @@ body {
   font-weight: bold;
 }
 
-/* LISTA DE RESIDUOS ADAPTABLE */
 .grid-residuos {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -308,7 +279,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   border: 1px solid #eee;
 }
 
@@ -333,7 +303,7 @@ body {
 .tag-verde { background: #e8f5e9; color: #2e7d32; }
 .tag-negra { background: #eee; color: #333; }
 
-/* JUEGO ECO-DESAFÍO */
+/* JUEGO */
 .juego-container {
   background: var(--card-bg);
   padding: 24px;
@@ -364,7 +334,6 @@ body {
 .item-icono {
   font-size: 4rem;
   display: block;
-  margin-bottom: 8px;
 }
 
 .botones-canecas {
@@ -381,7 +350,6 @@ body {
   font-size: 0.85rem;
   cursor: pointer;
   color: white;
-  transition: transform 0.1s;
 }
 
 .btn-blanca { background: #1e88e5; }
@@ -392,13 +360,12 @@ body {
   margin-top: 14px;
   font-weight: bold;
   font-size: 1rem;
-  min-height: 24px;
 }
 
 .correct { color: #2e7d32; }
 .incorrect { color: #c62828; }
 
-/* FORMULARIO Y REPORTES */
+/* REPORTE */
 .form-estilizado {
   background: var(--card-bg);
   padding: 20px;
@@ -456,45 +423,20 @@ body {
   border-radius: 8px;
   font-size: 0.85rem;
   border-left: 4px solid var(--primary);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
-/* REGLAS PARA PANTALLAS DE ESCRITORIO (>= 900px) */
+/* MEDIA QUERY PARA NAVEGACIÓN EN ESCRITORIO */
 @media (min-width: 900px) {
-  .btn-menu {
-    display: none; /* Oculta botón menú en pantallas grandes */
-  }
-
+  .btn-menu { display: none; }
   #navegacion {
     display: flex !important;
-    flex-direction: row; /* Menú horizontal continuo */
+    flex-direction: row;
     background: transparent;
     margin-top: 0;
     gap: 8px;
   }
-
-  #navegacion a {
-    border-bottom: none;
-    border-radius: 8px;
-    padding: 8px 14px;
-  }
-
-  #navegacion a:hover {
-    background: rgba(255, 255, 255, 0.15);
-  }
-
-  .barra-superior {
-    gap: 20px;
-  }
-
-  .header-acciones {
-    order: 3;
-  }
-
-  #navegacion {
-    order: 2;
-    margin-left: auto;
-  }
+  #navegacion a { border-bottom: none; border-radius: 8px; }
+  .barra-superior { gap: 20px; }
+  .header-acciones { order: 3; }
+  #navegacion { order: 2; margin-left: auto; }
 }
-
-
