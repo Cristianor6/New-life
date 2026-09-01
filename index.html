@@ -1,0 +1,163 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2e7d32">
+  <title>New Life - EcoPWA Reciclaje</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+<div class="contenedor-app">
+  <header class="mi-header">
+    <div class="barra-superior">
+      <div class="logo-titulo">
+        <!-- Reemplazo del emoji por el logo de imagen -->
+        <img src="image_0.png" alt="Logo New Life" class="icon-app-img">
+        <h1>New Life</h1>
+      </div>
+      <div class="header-acciones">
+        <span id="estado-conexion" class="badge online">Online</span>
+        <button id="boton-menu" class="btn-menu" aria-label="Abrir menú">☰</button>
+      </div>
+    </div>
+         
+    <nav id="navegacion" class="menu-oculto">
+      <a href="#inicio" onclick="mostrarSeccion('inicio')">🏠 Inicio</a>
+      <a href="#separador" onclick="mostrarSeccion('separador')">🔍 Clasificador Interactivo</a>
+      <a href="#juego" onclick="mostrarSeccion('juego')">🎮 Juego Eco-Desafío</a>
+      <a href="#reporte" onclick="mostrarSeccion('reporte')">📢 Reportar Punto/Fallo</a>
+    </nav>
+  </header>
+
+  <main class="contenido">
+    <!-- SECCIÓN 1: INICIO Y GUÍA -->
+    <section id="sec-inicio" class="seccion-activa">
+      <div class="hero-banner">
+        <h2>Separa, recicla y da otra oportunidad 🌱</h2>
+        <p>Aprende a clasificar tus residuos correctamente y acumula eco-puntos para salvar el planeta.</p>
+      </div>
+      <div class="grid-servicios">
+        <div class="card" onclick="mostrarSeccion('separador')">
+          <span class="icon">🔍</span>
+          <h3>¿Dónde va este residuo?</h3>
+          <p class="card-desc">Buscador y filtro de canecas</p>
+        </div>
+        <div class="card card-destacada" onclick="mostrarSeccion('juego')">
+          <span class="icon">🎮</span>
+          <h3>Juego de Reciclaje</h3>
+          <p class="card-desc">Pon a prueba tus conocimientos</p>
+        </div>
+      </div>
+      <div class="seccion-info">
+        <h3>Guía rápida de Canecas y Colores</h3>
+        <div class="canecas-grid">
+          <div class="caneca-card caneca-blanca">
+            <div class="caneca-header">⚪ Caneca Blanca</div>
+            <h4>Aprovechables</h4>
+            <p>Plástico, vidrio, metal, papel y cartón <strong>limpios y secos</strong>.</p>
+          </div>
+          <div class="caneca-card caneca-verde">
+            <div class="caneca-header">🟢 Caneca Verde</div>
+            <h4>Orgánicos Aprovechables</h4>
+            <p>Restos de comida, desechos agrícolas, cáscaras de fruta y poda.</p>
+          </div>
+          <div class="caneca-card caneca-negra">
+            <div class="caneca-header">⚫ Caneca Negra</div>
+            <h4>No Aprovechables</h4>
+            <p>Papel higiénico, servilletas usadas, cartón contaminado con comida y papeles metalizados.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: CLASIFICADOR INTERACTIVO -->
+    <section id="sec-separador" class="seccion-oculta">
+      <h2>Clasificador Interactivo de Residuos 🔍</h2>
+      <p>Escribe un residuo o selecciona una categoría para saber exactamente en qué caneca desecharlo:</p>
+             
+      <div class="buscador-box">
+        <input type="text" id="input-busqueda" placeholder="Ej: botella de vidrio, servilleta, cáscara de banano..." oninput="filtrarResiduos()">
+      </div>
+      <div class="filtros-categorias">
+        <button class="btn-filtro active" onclick="filtrarCategoria('todos', this)">Todos</button>
+        <button class="btn-filtro" onclick="filtrarCategoria('blanca', this)">⚪ Blanca</button>
+        <button class="btn-filtro" onclick="filtrarCategoria('verde', this)">🟢 Verde</button>
+        <button class="btn-filtro" onclick="filtrarCategoria('negra', this)">⚫ Negra</button>
+      </div>
+      <div id="lista-residuos" class="grid-residuos">
+        <!-- Generado dinámicamente -->
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: JUEGO ECO-DESAFÍO -->
+    <section id="sec-juego" class="seccion-oculta">
+      <div class="juego-container">
+        <h2>🎮 Eco-Desafío: ¿En qué caneca va?</h2>
+        <div class="tablero-puntos">
+          <span>Puntos: <strong id="score">0</strong> 🪙</span>
+          <span>Racha: <strong id="streak">0</strong> 🔥</span>
+        </div>
+        <div id="pantalla-juego">
+          <div class="item-tarjeta" id="item-actual">
+            <span class="item-icono" id="juego-icono">🍾</span>
+            <h3 id="juego-nombre">Botella de Vidrio</h3>
+            <p id="juego-pista" class="pista">Limpia y sin líquidos</p>
+          </div>
+          <p class="instruccion-juego">Toca la caneca correcta:</p>
+          <div class="botones-canecas">
+            <button class="btn-caneca btn-blanca" onclick="validarRespuesta('blanca')">
+                Blanca<br><small>(Aprovechable)</small>
+            </button>
+            <button class="btn-caneca btn-verde" onclick="validarRespuesta('verde')">
+                Verde<br><small>(Orgánico)</small>
+            </button>
+            <button class="btn-caneca btn-negra" onclick="validarRespuesta('negra')">
+                Negra<br><small>(No Aprovechable)</small>
+            </button>
+          </div>
+          <div id="feedback-juego" class="feedback"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: REPORTE Y ECO-PUNTOS -->
+    <section id="sec-reporte" class="seccion-oculta">
+      <h2>📢 Reportar Punto de Reciclaje o Fallo</h2>
+      <p>Registra un nuevo contenedor lleno o un punto verde comunitario:</p>
+      <form id="form-reporte" onsubmit="guardarReporte(event)" class="form-estilizado">
+        <div class="form-group">
+          <label for="tipo-reporte">Tipo de Reporte:</label>
+          <select id="tipo-reporte" required>
+            <option value="Contenedor Lleno">⚠️ Contenedor Lleno</option>
+            <option value="Nuevo Punto Verde">📍 Nuevo Punto Verde</option>
+            <option value="Sugerencia">💬 Sugerencia Comunitaria</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="ubicacion">Ubicación / Lugar:</label>
+          <input type="text" id="ubicacion" placeholder="Ej: Parque Central / Barrio Centro" required>
+        </div>
+        <div class="form-group">
+          <label for="descripcion">Detalles u Observaciones:</label>
+          <textarea id="descripcion" rows="3" placeholder="Describe la situación..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Enviar Reporte (+50 EcoPuntos)</button>
+      </form>
+      <div class="historial-reportes">
+        <h3>Tus Reportes Registrados (Modo Local/Offline)</h3>
+        <ul id="lista-reportes">
+          <!-- Cargado dinámicamente desde LocalStorage -->
+        </ul>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
