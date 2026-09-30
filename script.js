@@ -207,15 +207,20 @@ btnCamara.addEventListener('click', async () => {
   try {
     estado.textContent = "Solicitando acceso a la cámara...";
     
-    // Solicita acceso a la cámara trasera en dispositivos móviles
+    // Solicita la cámara trasera en celulares o la cámara web principal
     const stream = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode: "environment" }
+      video: { facingMode: { ideal: "environment" } }
     });
 
     video.srcObject = stream;
-    estado.textContent = "Cámara activa correctamente.";
+    estado.textContent = "¡Cámara activa correctamente!";
   } catch (err) {
-    console.error("Error al acceder a la cámara:", err);
-    estado.textContent = "Error: Asegúrate de permitir el acceso a la cámara en el candado de la barra URL.";
+    console.error("Error de acceso a la cámara:", err);
+    
+    if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+      estado.textContent = "Acceso denegado: Haz clic en el icono del candado en la barra de URL para permitir la cámara.";
+    } else {
+      estado.textContent = "Error al conectar con la cámara: " + err.message;
+    }
   }
 });
