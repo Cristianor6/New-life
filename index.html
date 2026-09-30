@@ -165,20 +165,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lector QR New Life</title>
-  
-  <!-- CDN Oficial de Html5Qrcode -->
-  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+  <title>Escáner QR - New Life</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 20px; background: #f4f4f9; }
+    #video-container { margin: 20px auto; max-width: 400px; position: relative; }
+    video { width: 100%; border-radius: 12px; background: #000; }
+    button { padding: 12px 24px; font-size: 16px; border: none; background: #007bff; color: white; border-radius: 8px; cursor: pointer; }
+  </style>
 </head>
 <body>
 
-  <h2>Escáner de Código QR</h2>
-  
-  <!-- Contenedor donde se renderiza la cámara -->
-  <div id="reader" style="width: 100%; max-width: 500px; margin: 0 auto;"></div>
-  
-  <!-- Muestra de resultado -->
-  <p id="resultado">Esperando código QR...</p>
+  <h1>Escáner de Cámara</h1>
+  <button id="btn-camara">Activar Cámara</button>
+
+  <div id="video-container">
+    <video id="webcam" autoplay playsinline></video>
+  </div>
+
+  <p id="estado">Haz clic en el botón para solicitar permiso de la cámara.</p>
 
   <script src="index.js"></script>
 </body>
