@@ -199,31 +199,23 @@ function renderizarReportes() {
 
 renderizarReportes();
 
-function onScanSuccess(decodedText, decodedResult) {
-    // Se ejecuta al leer un QR con éxito
-    console.log(`Código escaneado: ${decodedText}`);
+const video = document.getElementById('webcam');
+const btnCamara = document.getElementById('btn-camara');
+const estado = document.getElementById('estado');
+
+btnCamara.addEventListener('click', async () => {
+  try {
+    estado.textContent = "Solicitando acceso a la cámara...";
     
-    document.getElementById('resultado').innerHTML = `
-        <strong>Resultado:</strong> <a href="${decodedText}" target="_blank">${decodedText}</a>
-    `;
-    
-    // Si deseas redireccionar automáticamente si el QR es un enlace:
-    // window.location.href = decodedText;
-}
+    // Solicita acceso a la cámara trasera en dispositivos móviles
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: "environment" }
+    });
 
-function onScanFailure(error) {
-    // Captura errores de lectura por frame (opcional dejarlo silencioso)
-}
-
-// Configuración del escáner
-let html5QrcodeScanner = new Html5QrcodeScanner(
-    "reader", 
-    { 
-        fps: 10, 
-        qrbox: { width: 250, height: 250 },
-        facingMode: "environment" // Prioriza la cámara trasera en celulares
-    },
-    /* verbose= */ false
-);
-
-html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+    video.srcObject = stream;
+    estado.textContent = "Cámara activa correctamente.";
+  } catch (err) {
+    console.error("Error al acceder a la cámara:", err);
+    estado.textContent = "Error: Asegúrate de permitir el acceso a la cámara en el candado de la barra URL.";
+  }
+});
