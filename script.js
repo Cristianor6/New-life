@@ -199,28 +199,28 @@ function renderizarReportes() {
 
 renderizarReportes();
 
-const video = document.getElementById('webcam');
-const btnCamara = document.getElementById('btn-camara');
-const estado = document.getElementById('estado');
-
-btnCamara.addEventListener('click', async () => {
-  try {
-    estado.textContent = "Solicitando acceso a la cámara...";
+function onScanSuccess(decodedText, decodedResult) {
+    // Código que se ejecuta cuando se detecta un QR
+    console.log(`Código detectado: ${decodedText}`, decodedResult);
+    document.getElementById('resultado-qr').innerText = `Resultado: ${decodedText}`;
     
-    // Solicita la cámara trasera en celulares o la cámara web principal
-    const stream = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode: { ideal: "environment" } }
-    });
+    // Opcional: Detener el escáner tras leer un código
+    // html5QrcodeScanner.clear();
+}
 
-    video.srcObject = stream;
-    estado.textContent = "¡Cámara activa correctamente!";
-  } catch (err) {
-    console.error("Error de acceso a la cámara:", err);
-    
-    if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
-      estado.textContent = "Acceso denegado: Haz clic en el icono del candado en la barra de URL para permitir la cámara.";
-    } else {
-      estado.textContent = "Error al conectar con la cámara: " + err.message;
-    }
-  }
-});
+function onScanFailure(error) {
+    // Se ejecuta mientras no encuentre un QR en pantalla (puedes ignorar este callback)
+}
+
+// Inicializar el escáner
+let html5QrcodeScanner = new Html5QrcodeScanner(
+    "reader", 
+    { 
+        fps: 10, 
+        qrbox: { width: 250, height: 250 },
+        facingMode: "environment" // Fuerza el uso de la cámara trasera
+    },
+    /* verbose= */ false
+);
+
+html5QrcodeScanner.render(onScanSuccess, onScanFailure);
