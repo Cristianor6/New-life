@@ -198,29 +198,3 @@ function renderizarReportes() {
 }
 
 renderizarReportes();
-
-function onScanSuccess(decodedText, decodedResult) {
-    // Código que se ejecuta cuando se detecta un QR
-    console.log(`Código detectado: ${decodedText}`, decodedResult);
-    document.getElementById('resultado-qr').innerText = `Resultado: ${decodedText}`;
-    
-    // Opcional: Detener el escáner tras leer un código
-    // html5QrcodeScanner.clear();
-}
-
-function onScanFailure(error) {
-    // Se ejecuta mientras no encuentre un QR en pantalla (puedes ignorar este callback)
-}
-
-// Inicializar el escáner
-let html5QrcodeScanner = new Html5QrcodeScanner(
-    "reader", 
-    { 
-        fps: 10, 
-        qrbox: { width: 250, height: 250 },
-        facingMode: "environment" // Fuerza el uso de la cámara trasera
-    },
-    /* verbose= */ false
-);
-
-html5QrcodeScanner.render(onScanSuccess, onScanFailure);
